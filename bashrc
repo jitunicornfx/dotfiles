@@ -117,7 +117,20 @@ if ! shopt -oq posix; then
 fi
 
 # if running in terminal...
-if test -t 1; then
+#if test -t 1; then
   # ...start zsh
-  exec zsh
+#  exec zsh
+#fi
+. "$HOME/.cargo/env"
+export PATH="$HOME/.npm-global/bin:$PATH"
+
+# Add ~/.local/bin to PATH
+[[ ":$PATH:" != *":$HOME/.local/bin:"* ]] && export PATH="$HOME/.local/bin:$PATH"
+
+# Playwright Fedora wrapper (https://github.com/CybLow/playwright-fedora)
+if [ -f "$HOME/.local/share/playwright-fedora/pw.bash" ]; then
+    source "$HOME/.local/share/playwright-fedora/pw.bash"
 fi
+
+# Added by LM Studio CLI tool (lms)
+export PATH="$PATH:/home/gandalf/.lmstudio/bin"

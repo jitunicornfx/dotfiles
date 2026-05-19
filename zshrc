@@ -52,3 +52,39 @@ zstyle ':completion:*:(ssh|scp|rsync):*' tag-order '!hosts:-host:host !hosts:-do
     bindkey -M $keymap -s '^[On' '.'
   done
 }
+
+# include local config
+if [[ -d ~/.zshrc.d ]]
+then
+	for rc in ~/.zshrc.d/*
+	do	
+		if [[ -f "$rc" ]]
+		then
+			source "$rc"
+		fi
+	done
+fi
+unset rc
+
+# Created by `pipx` on 2025-11-24 02:56:25
+export PATH="$PATH:/home/gandalf/.local/bin"
+export PATH="$HOME/.npm-global/bin:$PATH"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+
+# OpenClaw Completion
+source "/home/gandalf/.openclaw/completions/openclaw.zsh"
+
+# Playwright Fedora wrapper (https://github.com/CybLow/playwright-fedora)
+if [ -f "$HOME/.local/share/playwright-fedora/pw.bash" ]; then
+    source "$HOME/.local/share/playwright-fedora/pw.bash"
+fi
+
+# Added by LM Studio CLI tool (lms)
+export PATH="$PATH:/home/gandalf/.lmstudio/bin"
+
+# Added by me
+export PATH="$PATH:/opt/metasploit-framework/bin/"
+
+# Added by me
+eval "$(starship init zsh)"
