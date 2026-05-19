@@ -34,8 +34,12 @@ zstyle ':prezto:load' pmodule \
   'completion' \
   'syntax-highlighting' \
   'history-substring-search' \
+  'autosuggestions' \
+  'git' \
   'ssh' \
+  'python' \
   'yum' \
+  'dnf' \
   'prompt'
 
 #
